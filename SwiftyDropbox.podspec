@@ -7,6 +7,6 @@ Pod::Spec.new do |s|
   s.author       = { "Ryan Pearl" => "rpearl@dropbox.com" }
   s.source_files = "Source/*.{h,m,swift}"
   s.requires_arc = true
-  s.ios.deployment_target = "8.0"
+  s.tvos.deployment_target = "9.0"
   s.dependency "Alamofire", "~> 2.0.2"
 end
