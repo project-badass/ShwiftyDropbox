@@ -1,6 +1,6 @@
 # ShwiftyDropbox
 
-![](http://cl.ly/image/3w0D3B0f101Q/shwifty.gif)
+![](http://33.media.tumblr.com/bfa27f3d5cc6e292c01d875c97fecf28/tumblr_inline_ntp6xooE7A1tzstsc_500.gif)
 
 A Swift SDK for integrating with the Dropbox API v2 (preview version).
 
