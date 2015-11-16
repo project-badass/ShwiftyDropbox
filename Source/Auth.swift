@@ -316,7 +316,7 @@ public class DropboxAuthManager {
     ///
     /// :param: url
     ///         The URL to attempt to handle
-    /// :returns: `nil` if SwiftyDropbox cannot handle the redirect URL, otherwise returns the `DropboxAuthResult`.
+    /// :returns: `nil` if ShwiftyDropbox cannot handle the redirect URL, otherwise returns the `DropboxAuthResult`.
     public func handleRedirectURL(url: NSURL) -> DropboxAuthResult? {
         
         if !self.canHandleURL(url) {
