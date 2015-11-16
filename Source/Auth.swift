@@ -1,5 +1,4 @@
 import UIKit
-import WebKit
 
 import Security
 
@@ -408,9 +407,7 @@ public class DropboxAuthManager {
 }
 
 
-public class DropboxConnectController : UIViewController, WKNavigationDelegate {
-    var webView : WKWebView!
-    
+public class DropboxConnectController : UIViewController {
     var onWillDismiss: ((didCancel: Bool) -> Void)?
     var tryIntercept: ((url: NSURL) -> Bool)?
     
@@ -434,39 +431,10 @@ public class DropboxConnectController : UIViewController, WKNavigationDelegate {
     override public func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Link to Dropbox"
-        self.webView = WKWebView(frame: self.view.bounds)
-        self.view.addSubview(self.webView)
-        
-        self.webView.navigationDelegate = self
-        
         self.view.backgroundColor = UIColor.whiteColor()
         
         self.cancelButton = UIBarButtonItem(barButtonSystemItem: .Cancel, target: self, action: "cancel:")
         self.navigationItem.rightBarButtonItem = self.cancelButton
-    }
-    
-    public override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        if !webView.canGoBack {
-            if nil != startURL {
-                loadURL(startURL!)
-            }
-            else {
-                webView.loadHTMLString("There is no `startURL`", baseURL: nil)
-            }
-        }
-    }
-    
-    public func webView(webView: WKWebView,
-        decidePolicyForNavigationAction navigationAction: WKNavigationAction,
-        decisionHandler: (WKNavigationActionPolicy) -> Void) {
-        if let url = navigationAction.request.URL, callback = self.tryIntercept {
-            if callback(url: url) {
-                self.dismiss(true)
-                return decisionHandler(.Cancel)
-            }
-        }
-        return decisionHandler(.Allow)
     }
     
     public var startURL: NSURL? {
@@ -478,15 +446,11 @@ public class DropboxConnectController : UIViewController, WKNavigationDelegate {
     }
     
     public func loadURL(url: NSURL) {
-        webView.loadRequest(NSURLRequest(URL: url))
+        
     }
     
     func showHideBackButton(show: Bool) {
         navigationItem.leftBarButtonItem = show ? UIBarButtonItem(barButtonSystemItem: .Rewind, target: self, action: "goBack:") : nil
-    }
-    
-    func goBack(sender: AnyObject?) {
-        webView.goBack()
     }
     
     func cancel(sender: AnyObject?) {
@@ -498,8 +462,6 @@ public class DropboxConnectController : UIViewController, WKNavigationDelegate {
     }
     
     func dismiss(asCancel: Bool, animated: Bool) {
-        webView.stopLoading()
-        
         self.onWillDismiss?(didCancel: asCancel)
         presentingViewController?.dismissViewControllerAnimated(animated, completion: nil)
     }
