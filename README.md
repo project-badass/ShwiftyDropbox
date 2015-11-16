@@ -17,7 +17,7 @@ To get started with ShwiftyDropbox, we recommend you add it to your project usin
   platform :ios, '8.0'
   use_frameworks!
 
-  pod 'ShwiftyDropbox', :git => 'git@github.com:tupakapoor/ShwiftyDropbox.git', :tag => '0.7.1'
+  pod 'ShwiftyDropbox', :git => 'git@github.com:project-badass/ShwiftyDropbox.git', :tag => '0.7.1'
 ``` 
 
 1. From the project directory, install the ShwiftyDropbox SDK with:
